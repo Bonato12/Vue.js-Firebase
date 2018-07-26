@@ -1,10 +1,22 @@
 <template>
-     <div id="app">
-	     <router-link to="/home" active-class="activo" exact>Home </router-link>
-	     <router-link to="/alta" active-class="activo" >Alta</router-link>
-	     <hr>
-	     <router-view> </router-view>
-     </div>
+    <div>
+		<div>
+			<b-nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<b-nav-item active>Active</b-nav-item>
+				<b-nav-item>Link</b-nav-item>
+				<b-nav-item-dropdown id="nav7_ddown" text="Persona" extra-toggle-classes="nav-link-custom" right>
+					<b-dropdown-item>
+						<router-link to="/home" active-class="activo" exact>Home </router-link>
+					</b-dropdown-item>
+					<b-dropdown-divider></b-dropdown-divider>
+					<b-dropdown-item>
+						<router-link to="/alta" active-class="activo" >Alta</router-link>
+					</b-dropdown-item>	
+				</b-nav-item-dropdown>
+			</b-nav>
+		</div>
+	    <router-view> </router-view>
+    </div>
 </template>
 <script>
 import {db} from './firebase';
@@ -14,7 +26,6 @@ export default {
 		
 			
 	 },
-	name: "app",
   data() {
     return {
       

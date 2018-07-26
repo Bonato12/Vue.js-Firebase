@@ -13,6 +13,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue);
 
 
+import 'vue-awesome/icons/flag'
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
+ 
+Vue.component('icon', Icon)
+
+
+
 const router = new VueRouter ({
 	routes
 	
@@ -21,5 +29,8 @@ const router = new VueRouter ({
 new Vue({
   el: '#app',
   router,
+  components: {
+    Icon
+  },
   render: h => h(App)
 })

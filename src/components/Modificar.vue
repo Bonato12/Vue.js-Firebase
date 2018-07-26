@@ -2,7 +2,7 @@
 	<div>
 		 <br>
 		 <br>
-		 <h2> Modificar </h2>
+		 <h2 style="margin-left:650px;"> Modificar </h2>
 		 <br>
 		 <div class="col-md-8 col-md-offset-5">
 				 <form class="form-horizontal" style="margin-left:460px">
@@ -91,7 +91,7 @@
 				 key: key,
 			})
 		}
-    },
+		},
 		 Listar(){
 		 console.log(this.id);
 		 var key1 = this.id;

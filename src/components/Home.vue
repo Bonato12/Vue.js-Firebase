@@ -12,7 +12,7 @@
                         <td></td>
                     </tr>
                     </thead>
-                    <tbody v-for="item in personas">
+                    <tbody v-for="item in PersonaT">
                         <tr>
 							<td>
                                 {{ item.dni }}
@@ -28,15 +28,23 @@
                             </td>
                             <td>
 								  <router-link :to="/modificar/+item.key" active-class="activo" class="btn btn-primary" tag="button" >Modificar</router-link>
-                                <a class="btn btn-danger" v-on:click="eliminar(item.key)"
-								                                      role="button">
+                                <button class="btn btn-danger" v-on:click="eliminar(item.key)"
+								                                      type="button">
                              
                                     Eliminar
-                                </a>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
              </table>
+			 <div>
+				<button class="btn-success" v-on:click="anteriorPagina">
+					<icon name="arrow-left" scale="2"></icon>
+				</button> 
+				<button class="btn-success" v-on:click="siguientePagina">
+					<icon name="arrow-right" scale="2"></icon>
+				</button>
+		     </div>
 			 </div>
 	</div>
 	
@@ -59,37 +67,63 @@ export default {
 		 apellido: null,
 		 mail: null,
 		 personas: [],
-
-    }
-  },
-  
-
-   methods : {
-   
-   cargar(ListaFirebase){
-		this.personas = [];
-		for (var key in ListaFirebase){
-			this.personas.push({
-			dni: ListaFirebase[key].dni,
-			nombre: ListaFirebase[key].nombre,
-			apellido: ListaFirebase[key].apellido,
-			mail: ListaFirebase[key].mail,
-			key: key,
-			})
-
+		 tamPagina:3,
+		 paginaActual:1,
+		 currentSort:'nombre',
+		 currentSortDir:'asc',
 		}
     },
-	eliminar(key){
-		 db.ref('/persona/'+key).remove();
-		 alert("ELIMINADO!");
 	
-	
+   methods : {
+	   cargar(ListaFirebase){
+			this.personas = [];
+			for (var key in ListaFirebase){
+				this.personas.push({
+				dni: ListaFirebase[key].dni,
+				nombre: ListaFirebase[key].nombre,
+				apellido: ListaFirebase[key].apellido,
+				mail: ListaFirebase[key].mail,
+				key: key,
+				})
+
+			}
+		},
+		eliminar(key){
+			 db.ref('/persona/'+key).remove();
+			 alert("ELIMINADO!");
+		
+		
+		},
+		
+		ordenar(s) {
+		  if(s === this.currentSort) {
+			this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
+		  }
+		  this.currentSort = s;
+		},
+		siguientePagina(){
+			if((this.paginaActual*this.tamPagina) < this.personas.length) this.paginaActual++;
+		},
+		anteriorPagina(){
+			if(this.paginaActual > 1) this.paginaActual--;
+		}			
+	},
+	computed:{
+		PersonaT() {
+			return this.personas.sort((a,b) => {
+			var modifier = 1;
+			if(this.currentSortDir === 'desc') modifier = -1;
+			if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+			if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+			return 0;
+		  }).filter((row, index) => {
+			var start = (this.paginaActual-1)*this.tamPagina;
+			var end = this.paginaActual*this.tamPagina;
+			if(index >= start && index < end) return true;
+		  });
+		}
 	}
-  
-			
-			
-			
-	}		
+	
 }
 </script>
 
