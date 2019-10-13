@@ -1,43 +1,8 @@
 <template>
 	 <div id="app">
-	 <h2> Home </h2>
-			 <div class="col-md-8 col-md-offset-5" style="margin-left:220px;">
-		     <table class="table table-striped table-bordered  animated bounceInLeft" id="tabla">
-                    <thead>
-                    <tr>
-						<td>Dni</td>
-                        <td>Nombre</td>
-                        <td>Apellido</td>
-						<td>Mail</td>
-                        <td></td>
-                    </tr>
-                    </thead>
-                    <tbody v-for="item in PersonaT">
-                        <tr>
-							<td>
-                                {{ item.dni }}
-                            </td>
-                            <td>
-                                {{ item.nombre }}
-                            </td>
-                            <td>
-                                {{item.apellido }}
-                            </td>
-							<td>
-                                {{ item.mail}}
-                            </td>
-                            <td>
-								  <router-link :to="/modificar/+item.key" active-class="activo" class="btn btn-primary" tag="button" >Modificar</router-link>
-                                <button class="btn btn-danger" v-on:click="eliminar(item.key)"
-								                                      type="button">
-
-                                    Eliminar
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-             </table>
-			 <div>
+		 <div class="container">
+	 	 	<h2> Home </h2>
+				<!--
 				<button class="btn-success" v-on:click="anteriorPagina">
 					<icon name="arrow-left" scale="2"></icon>
 				</button>
@@ -46,8 +11,14 @@
 				</button>
 		     </div>
 			 </div>
+		 -->
+			<vue-good-table
+		  :columns="columns"
+		  :rows="personas"
+		  theme="nocturnal">
+		  </vue-good-table>
+	  </div>
 	</div>
-
 
 </template>
 <script>
@@ -71,6 +42,24 @@ export default {
 		 paginaActual:1,
 		 currentSort:'nombre',
 		 currentSortDir:'asc',
+		 columns: [
+        {
+          label: 'Dni',
+          field: 'dni',
+        },
+        {
+          label: 'Nombre',
+          field: 'nombre',
+        },
+        {
+          label: 'Apellido',
+          field: 'apellido',
+        },
+        {
+          label: 'Email',
+          field: 'mail',
+        },
+      ]
 		}
     },
 

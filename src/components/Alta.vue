@@ -1,8 +1,10 @@
 <template>
 	<div id="app">
-		 <h2> Nuevo </h2>
-			<div class="col-md-8 col-md-offset-5">
-				 <form class="form-horizontal" style="margin-left:460px">
+		<div class="container">
+			<div class="col-md-4">
+				<h2> Nuevo Usuario </h2>
+				<br>
+				 <form class="form-horizontal">
 						<div class="row">
 							  <div class="input-group mb-2">
 								<div class="input-group-prepend">
@@ -39,23 +41,18 @@
 							  </div>
 						</div>
 						<br/>
-						<div class="row">
-							  <div class="input-group mb-3">
-									 <b-button on:click="nuevo()" class="pb-2" variant="success">Guardar</b-button>
-      			 			 <b-button on:click="volverHome()" class="pb-2" variant="primary">Volver </b-button>
-							  </div>
-						</div>
 						<b-row>
 							  <b-col lg="2" class="pb-2">
-									<b-button size="sm">Guardar</b-button>
+									<b-button  @click="nuevo()" size="sm"variant="success">Guardar</b-button>
 								</b-col>
 							  <b-col lg="2" class="pb-2">
-									<b-button  size="sm">Volver</b-button>
+									<b-button @click="volverHome()"  size="sm" variant="primary">Volver</b-button>
 								</b-col>
 						</b-row>
 					</form>
 			</div>
 	</div>
+</div>
 </template>
 
 
