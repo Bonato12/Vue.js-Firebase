@@ -30,7 +30,7 @@
 								  <router-link :to="/modificar/+item.key" active-class="activo" class="btn btn-primary" tag="button" >Modificar</router-link>
                                 <button class="btn btn-danger" v-on:click="eliminar(item.key)"
 								                                      type="button">
-                             
+
                                     Eliminar
                                 </button>
                             </td>
@@ -40,14 +40,14 @@
 			 <div>
 				<button class="btn-success" v-on:click="anteriorPagina">
 					<icon name="arrow-left" scale="2"></icon>
-				</button> 
+				</button>
 				<button class="btn-success" v-on:click="siguientePagina">
 					<icon name="arrow-right" scale="2"></icon>
 				</button>
 		     </div>
 			 </div>
 	</div>
-	
+
 
 </template>
 <script>
@@ -56,8 +56,8 @@ import {db} from '../firebase';
 
 export default {
 	created (){
-		 db.ref('persona').on('value',  snapshot => this.cargar(snapshot.val()))
-			
+		 db.ref('users').on('value',  snapshot => this.cargar(snapshot.val()))
+
 	 },
 	name: "app",
   data() {
@@ -73,7 +73,7 @@ export default {
 		 currentSortDir:'asc',
 		}
     },
-	
+
    methods : {
 	   cargar(ListaFirebase){
 			this.personas = [];
@@ -89,12 +89,12 @@ export default {
 			}
 		},
 		eliminar(key){
-			 db.ref('/persona/'+key).remove();
+			 db.ref('/users/'+key).remove();
 			 alert("ELIMINADO!");
-		
-		
+
+
 		},
-		
+
 		ordenar(s) {
 		  if(s === this.currentSort) {
 			this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
@@ -106,7 +106,7 @@ export default {
 		},
 		anteriorPagina(){
 			if(this.paginaActual > 1) this.paginaActual--;
-		}			
+		}
 	},
 	computed:{
 		PersonaT() {
@@ -123,7 +123,7 @@ export default {
 		  });
 		}
 	}
-	
+
 }
 </script>
 

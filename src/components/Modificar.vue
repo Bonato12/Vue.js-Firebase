@@ -48,8 +48,8 @@
 								     <a role="button" class="btn btn-primary" v-on:click="modificar(keyA)">Guardar</a>
 									 <br>
 							  </div>
-						</div>	
-						
+						</div>
+
 					</form>
 			</div>
 	</div>
@@ -60,14 +60,14 @@
 <script>
 
 	import {db} from '../firebase';
-	
+
 	 export default {
 	 created (){
-		 db.ref('persona').on('value',  snapshot => this.cargar(snapshot.val()));
+		 db.ref('users').on('value',  snapshot => this.cargar(snapshot.val()));
 		 this.Listar();
-			
+
 	 },
-  
+
      data() {
 		 return {
 		 id: this.$route.params.id,
@@ -103,15 +103,15 @@
 				 this.mail = this.personas[clave].mail;
 				 this.keyA = this.personas[clave].key
 			 }
-		 
+
 		 }
 		},
 		modificar(key){
-		db.ref('/persona/'+key).update({
+		db.ref('/users/'+key).update({
 			 nombre: this.nombre,
 			 apellido: this.apellido,
 			 mail: this.mail
-		
+
 		})
 		alert("Modificado");
 		}

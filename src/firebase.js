@@ -1,12 +1,15 @@
 import Firebase from 'firebase'
- let config = {
-	  apiKey: "AIzaSyBC8EBTXM3QJTpAM4Aoip4v_Vmww7JynL8",
-     authDomain: "garin-177b1.firebaseapp.com",
-     databaseURL: "https://garin-177b1.firebaseio.com",
-     projectId: "garin-177b1",
-     storageBucket: "garin-177b1.appspot.com",
-     messagingSenderId: "959635452862"
-    
-  };
-let app = Firebase.initializeApp(config)
-export const db = app.database()
+
+const config = {
+  apiKey: "AIzaSyAZZZYNcR0nwdM0hTKcTrAuXD8xN1iql80",
+  authDomain: "crud-f5421.firebaseapp.com",
+  databaseURL: "https://crud-f5421.firebaseio.com",
+  projectId: "crud-f5421",
+  storageBucket: "crud-f5421.appspot.com",
+  messagingSenderId: "136990994310",
+  appId: "1:136990994310:web:b16388d9111de781624607"
+};
+
+
+let app = Firebase.initializeApp(config);
+export const db = app.database();
